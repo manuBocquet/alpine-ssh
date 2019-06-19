@@ -21,7 +21,7 @@ shell:
 	        docker exec -it $(NAME) /bin/sh
 
 stop:
-	        docker stop $(NAME)
+	        docker stop $(NAME) && docker rm $(NAME)
 
 last_built_date:
 	        docker inspect -f '{{ .Created }}' $(NAME)
