@@ -1,2 +1,2 @@
-# ubi7-ssh
-SSH docker from ubi7
+# alpine-ssh
+SSH docker from alpine
