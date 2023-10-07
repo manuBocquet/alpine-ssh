@@ -6,22 +6,22 @@ VERSION = 0.1.0
 all: build run
 
 build:
-	        docker build -t $(NAME) --rm .
+	        podman build -t $(NAME) --rm .
 
 runtest:
-	        docker run -p 9022:22 -v /mnt/docker/alpine-ssh/home:/home/remoteuser -v /mnt/docker/alpine-ssh/etc:/etc/ssh --name $(NAME) $(NAME); 
+	        podman run -p 9022:22 -v /var/podman/alpine-ssh/home:/home/remoteuser -v /var/docker/alpine-ssh/etc:/etc/ssh --name $(NAME) $(NAME); 
 
 run:
-	        docker run -d --restart unless-stopped -p 9022:22 -v /mnt/docker/alpine-ssh/home:/home/remoteuser -v /mnt/docker/alpine-ssh/etc:/etc/ssh --name $(NAME) $(NAME); 
+	        podman run -d --restart unless-stopped -p 9022:22 -v /var/podman/alpine-ssh/home:/home/remoteuser -v /var/podman/alpine-ssh/etc:/etc/ssh --name $(NAME) $(NAME); 
 
 entry:
-	        docker run --interactive --tty --rm --entrypoint=/bin/sh --name "$(NAME)" $(NAME);
+	        podman run --interactive --tty --rm --entrypoint=/bin/sh --name "$(NAME)" $(NAME);
 
 shell:
-	        docker exec -it $(NAME) /bin/sh
+	        podman exec -it $(NAME) /bin/sh
 
 stop:
-	        docker stop $(NAME) && docker rm $(NAME)
+	        podman stop $(NAME) && docker rm $(NAME)
 
 last_built_date:
-	        docker inspect -f '{{ .Created }}' $(NAME)
+	        podman inspect -f '{{ .Created }}' $(NAME)

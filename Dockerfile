@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:latest
 MAINTAINER manu <manu.bocquet@gmail.com>
 USER root
 
